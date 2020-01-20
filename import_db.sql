@@ -38,7 +38,7 @@ CREATE TABLE replies
     id INTEGER PRIMARY KEY,
     body TEXT NOT NULL,
     subject_question_id INTEGER NOT NULL,
-    parent_reply_id INTEGER NOT NULL,
+    parent_reply_id INTEGER,
     author_id INTEGER NOT NULL,
 
     FOREIGN KEY (subject_question_id) REFERENCES questions (id),
@@ -79,7 +79,7 @@ VALUES
 INSERT INTO
   replies (body, subject_question_id, parent_reply_id, author_id)
 VALUES
-    ('this question sucks', (SELECT id FROM questions WHERE title = 'Jimmy Question'), nil, (SELECT id FROM users WHERE fname = 'Thomas' AND lname = 'Brady'));
+    ('this question sucks', (SELECT id FROM questions WHERE title = 'Jimmy Question'), NULL, (SELECT id FROM users WHERE fname = 'Thomas' AND lname = 'Brady'));
 
 INSERT INTO
   question_likes (user_id, question_id)
